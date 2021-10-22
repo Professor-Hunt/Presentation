@@ -116,17 +116,126 @@ Not an exhaustive list
 
 -   Sample has auditor, bank, and return information
 
+## GC and Bank Failures
+
+```{r Byyear, echo=FALSE,message=FALSE,warning=FALSE,fig.align='center',out.width="80%"}
+library(tidyverse)
+
+load("gc_bf_by_year.Rda")
+
+ggplot(df,aes(x=fyear,y=value, fill=variable)) + 
+  scale_fill_manual(values = c("Failure" = "darkgrey", "Going_Concern" = "darkred")) +
+  geom_bar(stat='identity', position='dodge')+
+  scale_x_continuous(labels=as.character(df$fyear),breaks=df$fyear)+
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
+  xlab("Fiscal Year") +
+  ylab("Frequency") +
+  ggtitle("Frequency Table") +
+  theme(plot.title = element_text(hjust = 0.5))
+
+  
+
+```
+
+## GC and Bank Failures
+
+```{r byyear,echo=FALSE,message=FALSE,warning=FALSE}
+library(knitr)
+library(kableExtra)
+load("GCFail.Rda")
+library(sjPlot)
+       kable(GCFail,
+             label = "Table 1: Frequency",
+             col.names = c('Fiscal Year','Bank Failure','Going Concern'),
+             align = "c")%>%
+             scroll_box(width = "50%", height = "70%")%>%
+             kable_styling(c("striped", "bordered"),font_size = 12) 
+
+```
+
 ## Hypothesis 1
 
-**H1**: *Regulatory and market scrutiny had no effect on the auditors' propensity to issue a going concern opinion during and after the financial crisis.*
+**H1**: *Regulatory and market scrutiny had no effect on the auditors' propensity to issue a going concern after the financial crisis relative to during crisis.*
 
-[insert results]
+## H1 Confusion During
+
+```{r ,echo=FALSE,message=FALSE,warning=FALSE,fig.align='center',out.width="60%"}
+
+load("DuringGCConfusion.Rda")
+
+ConfusionTableR::binary_visualiseR(train_labels = factor(DuringGCConfusion$GOING_CONCERN),
+                                   truth_labels= factor(DuringGCConfusion$Target),
+                                   class_label1 = "Bank Failure", 
+                                   class_label2 = "Going Concern",
+                                   quadrant_col1 = "#5D1725", 
+                                   quadrant_col2 = "#777777", 
+                                   custom_title = "During Going Concern Confusion Matrix", 
+                                   text_col= "black")
+
+```
+
+## H1 Confusion Post
+
+```{r ,echo=FALSE,message=FALSE,warning=FALSE,fig.align='center',out.width="60%"}
+
+load("PostGCConfusion.Rda")
+
+ConfusionTableR::binary_visualiseR(train_labels = factor(PostGCConfusion$GOING_CONCERN),
+                                   truth_labels= factor(PostGCConfusion$Target),
+                                   class_label1 = "Bank Failure", 
+                                   class_label2 = "Going Concern",
+                                   quadrant_col1 = "#5D1725", 
+                                   quadrant_col2 = "#777777", 
+                                   custom_title = "Post Going Concern Confusion Matrix", 
+                                   text_col= "black")
+```
+
+## Hypothesis 1 Results
+
+```{r,echo=FALSE,message=FALSE,warning=FALSE}
+library(knitr)
+library(kableExtra)
+load("GC_BFcrisis.Rda")
+load("GC_BFpostcrisis.Rda")
+
+       kable(GC_BFcrisis,
+             label = "Going Concern During Crisis",
+             #col.names = c('Fiscal Year','Bank Failure','Going Concern'),
+             align = "c")%>%
+             #scroll_box(width = "50%", height = "70%")%>%
+             kable_styling(c("striped", "bordered"),font_size = 12,
+                           full_width = F, position = "float_right") 
+       kable(GC_BFpostcrisis,
+             label = "Going Concern Post Crisis",
+             #col.names = c('Fiscal Year','Bank Failure','Going Concern'),
+             align = "c")%>%
+             #scroll_box(width = "50%", height = "70%")%>%
+             kable_styling(c("striped", "bordered"),font_size = 12,
+                           full_width = F, position = "float_left")
+       
+       
+      
+```
+
+## H1 Test of Significance
+
+```{r, echo=TRUE,message=FALSE,warning=FALSE}
+prop.test(x=c(47,80), n=c(1830+14+20+27, 3359+1+70+10),
+          conf.level=0.9)
+
+```
+
+## H1 Test of Significance
+
+```{r,echo=TRUE,message=FALSE,warning=FALSE}
+prop.test(x=c(20,70), n=c(1830+14+20+27, 3359+1+70+10),
+          conf.level=0.99)
+
+```
 
 ## Unsupervised Learning
 
 Models learn with only one class, the banks that do not fail. Bank failure is an anomaly. Anomalies should not be view as a percentage of the sample. For the first part of our sample traditional models cannot be used.
-
-[insert table]
 
 ## Isolation Forest
 
@@ -149,13 +258,13 @@ Models learn with only one class, the banks that do not fail. Bank failure is an
 
 **H2**: *Bank failure prediction accuracy is similar between auditors and machine learning methods.*
 
-[insert table]
+![](Table5top.png){width="80%"}
 
 ## Hypothesis 3
 
-**H3**: *Combining auditor and machine learning bank failure predictions improves going concern opinion accuracy.*
+**H3**: *Combining auditor and machine learning bank failure predictions improves going concern opinion false positive rate.*
 
-[insert table]
+![](table7top.png){width="70%"}
 
 ## Conclusion
 
@@ -174,3 +283,25 @@ Models learn with only one class, the banks that do not fail. Bank failure is an
 -   Distress only similar, but less false positives
 
 -   GC in the model does not help
+
+## Difference in Means
+
+```{r desc, echo=FALSE,message=FALSE,warning=FALSE}
+library(knitr)
+library(kableExtra)
+load("DifferenceInMeans.Rda")
+library(sjPlot)
+       kable(DifferenceInMeans,
+             label = "Difference in Means",
+             #col.names = c(),
+             align = "c")%>%
+             scroll_box(width = "70%", height = "70%")%>%
+             kable_styling(c("striped"),font_size = 12) 
+
+```
+
+## Paper
+
+<object data="DHHR Draft 20211019.pdf" type="application/pdf" width="100%" height="70%" >
+
+</object>
