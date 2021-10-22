@@ -1,0 +1,176 @@
+---
+title: "Combining expert expectations with machine learning: An analysis of bank going concern opinions before and after the financial crisis"
+author: "Joshua O.S. Hunt"
+date: "10/22/2021"
+output: 
+  slidy_presentation:
+    css: msstate.css
+    duration: 120
+    footer: "Data Analytics is the best"
+---
+
+```{r setup, include=FALSE}
+  
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Genesis
+
+-   This project began at UARK
+-   Got a grant
+-   It has changed quite a bit
+
+## Research Objectives
+
+-   Examine auditors' behavior of issuing going concerns during and after the financial crisis
+-   Examine how machine learning model predictions compare to auditors going concern issuance
+-   Examine if combining expertise with machine learning increasing accuracy of prediction
+
+## Prior Research - Bank & GC
+
+-   Bank failures have negative consequences
+
+-   Regulatory agencies called for action
+
+    -   Dodd-Frank
+
+    -   FDIC - adjusted CAMELS
+
+-   GC can be more severe for banks
+
+## Predicting Bank Failure
+
+<details><summary>Meyer and Pifer (1970)</summary><p>
+
+-   Small sample: Training 30 and Testing 9
+-   Matched Sample
+-   1948 - 1965
+-   Ordinary Least Squares: LPM
+
+</p></details>
+
+<details><summary>Thomson (1991)</summary><p>
+
+-   Predicts 1, 2 , 3 years ahead with 1 year of training data
+-   1982-1989
+-   Logistic Regression
+
+</p></details>
+
+<details><summary>Wheelock and Wilson (2005)</summary><p>
+
+-   Association study
+-   1987-1999
+-   Cox Proportional Hazard Model
+
+</p></details>
+
+<details><summary>Estrella, Park, and Perstiani (2000)</summary><p>
+
+-   Association study
+-   1988-1993
+-   Cox Proportional Hazard Model and Logistic (by year)
+
+</p></details>
+
+<details><summary>Cole and White (2012)</summary><p>
+
+-   Association and Prediction Training 2008-2009 and Testing q1-q3 in 2010
+-   2004-2009
+-   Logistic Regression
+
+</p></details>
+
+<details><summary>Ng and Roychowdhury (2014)</summary><p>
+
+-   Association
+-   2001-2010
+-   Logistic Regression and Hazard models
+
+</p></details>
+
+<details><summary>Kosimidou and Zopounidis (2008)</summary><p>
+
+-   Training 1993-1999 and Testing 2000-2003
+-   Discriminant analysis and UTADIS
+-   Matched samples
+
+</p></details>
+
+Not an exhaustive list
+
+## Prior Research Issues
+
+-   Quarterly
+-   Association
+-   Matched sample
+-   Reports true positive rate as accuracy
+
+## Research Method Overview
+
+-   Training sample starts 2003 and the testing sample ends in 2019
+
+-   Rolling 3 year windows
+
+-   Predict Bank Failures
+
+-   Sample has auditor, bank, and return information
+
+## Hypothesis 1
+
+**H1**: *Regulatory and market scrutiny had no effect on the auditors' propensity to issue a going concern opinion during and after the financial crisis.*
+
+[insert results]
+
+## Unsupervised Learning
+
+Models learn with only one class, the banks that do not fail. Bank failure is an anomaly. Anomalies should not be view as a percentage of the sample. For the first part of our sample traditional models cannot be used.
+
+[insert table]
+
+## Isolation Forest
+
+-   Ensemble of decision trees
+-   Random sample and input
+-   Continues until each point is isolated
+-   Prediction: deeper the observation more likely an anomaly
+
+## One-Class Support Vector Machine
+
+-   Like a normal support vector machine except the origin is a class
+
+-   Separate two classes with a hyperplane
+
+-   Kernel for non-linearity
+
+-   svm points and error
+
+## Hypothesis 2
+
+**H2**: *Bank failure prediction accuracy is similar between auditors and machine learning methods.*
+
+[insert table]
+
+## Hypothesis 3
+
+**H3**: *Combining auditor and machine learning bank failure predictions improves going concern opinion accuracy.*
+
+[insert table]
+
+## Conclusion
+
+1.  Anomaly Detection
+
+2.  Auditors do a good job
+
+3.  Auditors with ML can do a better job
+
+## Additional Analysis
+
+-   Two modules perform similarly
+
+-   Bailouts not an issue
+
+-   Distress only similar, but less false positives
+
+-   GC in the model does not help
