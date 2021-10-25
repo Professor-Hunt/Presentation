@@ -40,62 +40,127 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Predicting Bank Failure
 
+```{=html}
 <details><summary>Meyer and Pifer (1970)</summary><p>
 
+```
 -   Small sample: Training 30 and Testing 9
 -   Matched Sample
 -   1948 - 1965
 -   Ordinary Least Squares: LPM
-
+```{=html}
 </p></details>
 
-<details><summary>Thomson (1991)</summary><p>
+```
+
+
+<details>
+
+<summary>
+
+Thomson (1991)
+
+</summary>
+
+<p>
 
 -   Predicts 1, 2 , 3 years ahead with 1 year of training data
 -   1982-1989
 -   Logistic Regression
 
-</p></details>
+</p>
 
-<details><summary>Wheelock and Wilson (2005)</summary><p>
+</details>
+
+<details>
+
+<summary>
+
+Wheelock and Wilson (2005)
+
+</summary>
+
+<p>
 
 -   Association study
 -   1987-1999
 -   Cox Proportional Hazard Model
 
-</p></details>
+</p>
 
-<details><summary>Estrella, Park, and Perstiani (2000)</summary><p>
+</details>
+
+<details>
+
+<summary>
+
+Estrella, Park, and Perstiani (2000)
+
+</summary>
+
+<p>
 
 -   Association study
 -   1988-1993
 -   Cox Proportional Hazard Model and Logistic (by year)
 
-</p></details>
+</p>
 
-<details><summary>Cole and White (2012)</summary><p>
+</details>
+
+<details>
+
+<summary>
+
+Cole and White (2012)
+
+</summary>
+
+<p>
 
 -   Association and Prediction Training 2008-2009 and Testing q1-q3 in 2010
 -   2004-2009
 -   Logistic Regression
 
-</p></details>
+</p>
 
-<details><summary>Ng and Roychowdhury (2014)</summary><p>
+</details>
+
+<details>
+
+<summary>
+
+Ng and Roychowdhury (2014)
+
+</summary>
+
+<p>
 
 -   Association
 -   2001-2010
 -   Logistic Regression and Hazard models
 
-</p></details>
+</p>
 
-<details><summary>Kosimidou and Zopounidis (2008)</summary><p>
+</details>
+
+<details>
+
+<summary>
+
+Kosimidou and Zopounidis (2008)
+
+</summary>
+
+<p>
 
 -   Training 1993-1999 and Testing 2000-2003
 -   Discriminant analysis and UTADIS
 -   Matched samples
 
-</p></details>
+</p>
+
+</details>
 
 Not an exhaustive list
 
@@ -302,6 +367,40 @@ library(sjPlot)
 
 ## Paper
 
-<object data="DHHR Draft 20211019.pdf" type="application/pdf" width="100%" height="70%" >
+<object data="DHHR Draft 20211019.pdf" type="application/pdf" width="100%" height="70%">
 
 </object>
+
+## Test
+
+This is an example of toggle buttons
+```{=html}
+<script type="text/javascript">
+   function toggle_visibility(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block')
+          e.style.display = 'none';
+       else
+          e.style.display = 'block';
+   }
+</script>
+```
+
+
+```{=html}
+<button onclick="toggle_visibility('myDiv1');">I am 1</button>
+
+```
+
+::: {#myDiv1}
+Goes with 1
+:::
+
+
+```{=html}
+<button onclick="toggle_visibility('myDiv2');">I am 2</button>
+```
+::: {#myDiv2}
+Goes with 2
+:::
+
