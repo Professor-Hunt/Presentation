@@ -9,10 +9,6 @@ output:
     footer: "Data Analytics is the best"
 ---
 
-```{r setup, include=FALSE}
-  
-knitr::opts_chunk$set(echo = FALSE)
-```
 
 ## Genesis
 
@@ -53,116 +49,79 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```
 
+```{=html}
+<details><summary>Thomson (1991)</summary><p>
 
-<details>
-
-<summary>
-
-Thomson (1991)
-
-</summary>
-
-<p>
-
+```
 -   Predicts 1, 2 , 3 years ahead with 1 year of training data
 -   1982-1989
 -   Logistic Regression
+```{=html}
+</p></details>
 
-</p>
+```
 
-</details>
+```{=html}
+<details><summary>Wheelock and Wilson (2005)</summary><p>
 
-<details>
-
-<summary>
-
-Wheelock and Wilson (2005)
-
-</summary>
-
-<p>
-
+```
 -   Association study
 -   1987-1999
 -   Cox Proportional Hazard Model
+```{=html}
+</p></details>
 
-</p>
+```
 
-</details>
+```{=html}
+<details><summary>Estrella, Park, and Perstiani (2000)</summary><p>
 
-<details>
-
-<summary>
-
-Estrella, Park, and Perstiani (2000)
-
-</summary>
-
-<p>
-
+```
 -   Association study
 -   1988-1993
 -   Cox Proportional Hazard Model and Logistic (by year)
+```{=html}
+</p></details>
 
-</p>
+```
 
-</details>
+```{=html}
+<details><summary>Cole and White (2012)</summary><p>
 
-<details>
-
-<summary>
-
-Cole and White (2012)
-
-</summary>
-
-<p>
-
+```
 -   Association and Prediction Training 2008-2009 and Testing q1-q3 in 2010
 -   2004-2009
 -   Logistic Regression
+```{=html}
+</p></details>
 
-</p>
+```
 
-</details>
+```{=html}
+<details><summary>Ng and Roychowdhury (2014)</summary><p>
 
-<details>
-
-<summary>
-
-Ng and Roychowdhury (2014)
-
-</summary>
-
-<p>
-
+```
 -   Association
 -   2001-2010
 -   Logistic Regression and Hazard models
+```{=html}
+</p></details>
 
-</p>
+```
 
-</details>
+```{=html}
+<details><summary>Kosimidou and Zopounidis (2008)</summary><p>
 
-<details>
-
-<summary>
-
-Kosimidou and Zopounidis (2008)
-
-</summary>
-
-<p>
-
+```
 -   Training 1993-1999 and Testing 2000-2003
 -   Discriminant analysis and UTADIS
 -   Matched samples
+```{=html}
+</p></details>
 
-</p>
+```
 
-</details>
-
-Not an exhaustive list
+**Not an exhaustive list**
 
 ## Prior Research Issues
 
@@ -183,7 +142,7 @@ Not an exhaustive list
 
 ## GC and Bank Failures
 
-```{r Byyear, echo=FALSE,message=FALSE,warning=FALSE,fig.align='center',out.width="80%"}
+```{r Byyear, echo=FALSE,message=FALSE,warning=FALSE,fig.align='center',out.width="60%"}
 library(tidyverse)
 
 load("gc_bf_by_year.Rda")
@@ -265,18 +224,20 @@ load("GC_BFpostcrisis.Rda")
 
        kable(GC_BFcrisis,
              label = "Going Concern During Crisis",
+             caption = "During Crisis",
              #col.names = c('Fiscal Year','Bank Failure','Going Concern'),
              align = "c")%>%
              #scroll_box(width = "50%", height = "70%")%>%
              kable_styling(c("striped", "bordered"),font_size = 12,
-                           full_width = F, position = "float_right") 
+                           full_width = F, position = "center") 
        kable(GC_BFpostcrisis,
              label = "Going Concern Post Crisis",
+             caption = "Post Crisis",
              #col.names = c('Fiscal Year','Bank Failure','Going Concern'),
              align = "c")%>%
              #scroll_box(width = "50%", height = "70%")%>%
              kable_styling(c("striped", "bordered"),font_size = 12,
-                           full_width = F, position = "float_left")
+                           full_width = F, position = "center")
        
        
       
